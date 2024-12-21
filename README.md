@@ -163,3 +163,17 @@ To help our community with the creation of contributions, we have created our [c
 
 </a>
 
+### How to build the docker containers
+
+```bash
+cd argilla-server/docker/argilla-hf-spaces
+docker build .
+# tag and ship it
+#
+# frontend
+cd argilla-frontend
+npm i
+npm run generate
+docker build -f dev.frontend.Dockerfile .
+# tag and shipt it
+```
