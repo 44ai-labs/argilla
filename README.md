@@ -166,13 +166,18 @@ To help our community with the creation of contributions, we have created our [c
 ### How to build the docker containers
 
 ```bash
+# then we build the server with the elasticsearch
 cd argilla-server/docker/argilla-hf-spaces
-docker build .
+docker build . -t 44ai/argilla-server:2.6.0
 # tag and ship it
-#
+# run with
+docker run -it --rm -p 6900:6900 -e HF_HUB_DISABLE_TELEMETRY=1 -e USERNAME=admin -e PASSWORD=password -e API_KEY=test_api_key 44ai/argilla-server:2.6.0
 # frontend
+# there is a javascript issue with this frontend :-) in the tests (either delete the tests)
+# but we do not need the frontend we only need the server anyway??
 cd argilla-frontend
 npm i
+export HF_HUB_DISABLE_TELEMETRY=1
 npm run generate
 docker build -f dev.frontend.Dockerfile .
 # tag and shipt it
